@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riwayat Donasi - Masjid Raya Agung</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .admin-container {
+            min-height: 100vh;
+            background-color: #f8f9fa;
+        }
+        
+        .admin-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .admin-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .admin-nav h1 {
+            margin: 0;
+            color: white;
+        }
+        
+        .admin-nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .admin-nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        .admin-nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .admin-nav ul li a:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        .admin-content {
+            padding: 2rem 0;
+        }
+        
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .page-header h2 {
+            margin: 0;
+            color: var(--dark);
+        }
+        
+        .back-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        
+        .table-container {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+        
+        table th, table td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        table th {
+            background-color: var(--light);
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .status-pending {
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 0.3rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .status-confirmed {
+            background-color: #d1edff;
+            color: #004085;
+            padding: 0.3rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .btn-action {
+            background: none;
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+            margin-right: 0.5rem;
+            padding: 0.3rem 0.6rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn-action:hover {
+            background-color: var(--light);
+        }
+        
+        .btn-verify {
+            color: #27ae60;
+        }
+        
+        .btn-delete {
+            color: #e74c3c;
+        }
+        
+        .alert {
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1.5rem;
+            display: none;
+        }
+        
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .alert-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .filter-section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        .filter-input {
+            padding: 0.5rem;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .filter-select {
+            padding: 0.5rem;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            min-width: 150px;
+        }
+        
+        .btn-filter {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .btn-filter:hover {
+            background: var(--primary-dark);
+        }
+        
+        @media (max-width: 768px) {
+            .admin-nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .admin-nav ul {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .page-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <header class="admin-header">
+            <div class="container">
+                <nav class="admin-nav">
+                    <h1><i class="fas fa-history"></i> Riwayat Donasi</h1>
+                    <ul>
+                        <li><a href="admin.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                        <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        
+        <div class="admin-content container">
+            <div class="page-header">
+                <h2>Data Donasi Masjid Raya Agung</h2>
+                <a href="admin.html" class="back-link"><i class="fas fa-arrow-left"></i> Kembali ke Dashboard</a>
+            </div>
+            
+            <div class="alert alert-success" id="successAlert"></div>
+            <div class="alert alert-error" id="errorAlert"></div>
+            
+            <div class="filter-section">
+                <input type="text" class="filter-input" id="searchInput" placeholder="Cari nama atau email...">
+                <select class="filter-select" id="statusFilter">
+                    <option value="">Semua Status</option>
+                    <option value="Menunggu Konfirmasi">Menunggu Konfirmasi</option>
+                    <option value="Terverifikasi">Terverifikasi</option>
+                </select>
+                <select class="filter-select" id="typeFilter">
+                    <option value="">Semua Tipe</option>
+                    <option value="uang">Uang</option>
+                    <option value="makanan">Makanan</option>
+                    <option value="barang">Barang</option>
+                </select>
+                <button class="btn-filter" onclick="filterDonasi()"><i class="fas fa-search"></i> Filter</button>
+                <button class="btn-filter" onclick="resetFilter()"><i class="fas fa-undo"></i> Reset</button>
+            </div>
+            
+            <div class="table-container">
+                <table id="donasiTable">
+                    <thead>
+                        <tr>
+                            <th>Tanggal</th>
+                            <th>Nama Donatur</th>
+                            <th>Email</th>
+                            <th>Jumlah/Detail</th>
+                            <th>Metode</th>
+                            <th>Status</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="donasiTableBody">
+                        <!-- Data akan diisi oleh JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Cek login
+        if (localStorage.getItem('admin_logged_in') !== 'true') {
+            window.location.href = 'login.html';
+        }
+
+        // Data donasi dari localStorage
+        let donasiData = JSON.parse(localStorage.getItem('donasiData')) || [];
+        let filteredData = [...donasiData];
+
+        // Tampilkan donasi
+        function displayDonasi(data) {
+            const tbody = document.getElementById('donasiTableBody');
+            
+            if (data.length > 0) {
+                tbody.innerHTML = data.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp)).map(donasi => {
+                    let jumlahDisplay = donasi.detail;
+                    if (donasi.tipe === 'uang') {
+                        const angka = parseInt(donasi.detail.replace(/\D/g, '')) || 0;
+                        jumlahDisplay = `Rp ${angka.toLocaleString('id-ID')}`;
+                    }
+                    
+                    return `
+                        <tr>
+                            <td>${donasi.timestamp || '-'}</td>
+                            <td>${donasi.nama}</td>
+                            <td>${donasi.email}</td>
+                            <td>${jumlahDisplay}</td>
+                            <td>${donasi.metodeVerif === 'otp' ? 'WhatsApp' : donasi.metodeVerif}</td>
+                            <td>
+                                <span class="status-${donasi.status === 'Menunggu Konfirmasi' ? 'pending' : 'confirmed'}">
+                                    ${donasi.status}
+                                </span>
+                            </td>
+                            <td>
+                                ${donasi.status === 'Menunggu Konfirmasi' ? 
+                                    `<button class="btn-action btn-verify" onclick="verifikasiDonasi(${donasi.id})" title="Verifikasi">
+                                        <i class="fas fa-check"></i>
+                                    </button>` : ''}
+                                <button class="btn-action btn-delete" onclick="hapusDonasi(${donasi.id})" title="Hapus">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                }).join('');
+            } else {
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center;">Tidak ada data donasi</td></tr>';
+            }
+        }
+
+        // Filter donasi
+        window.filterDonasi = function() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const statusFilter = document.getElementById('statusFilter').value;
+            const typeFilter = document.getElementById('typeFilter').value;
+            
+            filteredData = donasiData.filter(donasi => {
+                const matchSearch = donasi.nama.toLowerCase().includes(searchTerm) || 
+                                   donasi.email.toLowerCase().includes(searchTerm);
+                const matchStatus = !statusFilter || donasi.status === statusFilter;
+                const matchType = !typeFilter || donasi.tipe === typeFilter;
+                
+                return matchSearch && matchStatus && matchType;
+            });
+            
+            displayDonasi(filteredData);
+        }
+
+        // Reset filter
+        window.resetFilter = function() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('statusFilter').value = '';
+            document.getElementById('typeFilter').value = '';
+            filteredData = [...donasiData];
+            displayDonasi(filteredData);
+        }
+
+        // Verifikasi donasi
+        window.verifikasiDonasi = function(id) {
+            if (confirm('Verifikasi donasi ini?')) {
+                const index = donasiData.findIndex(d => d.id === id);
+                if (index !== -1) {
+                    donasiData[index].status = 'Terverifikasi';
+                    localStorage.setItem('donasiData', JSON.stringify(donasiData));
+                    filteredData = [...donasiData];
+                    showSuccess('Donasi berhasil diverifikasi');
+                    displayDonasi(filteredData);
+                }
+            }
+        }
+
+        // Hapus donasi
+        window.hapusDonasi = function(id) {
+            if (confirm('Hapus donasi ini?')) {
+                donasiData = donasiData.filter(d => d.id !== id);
+                localStorage.setItem('donasiData', JSON.stringify(donasiData));
+                filteredData = [...donasiData];
+                showSuccess('Donasi berhasil dihapus');
+                displayDonasi(filteredData);
+            }
+        }
+
+        // Tampilkan pesan sukses
+        function showSuccess(message) {
+            const alert = document.getElementById('successAlert');
+            alert.textContent = message;
+            alert.style.display = 'block';
+            setTimeout(() => {
+                alert.style.display = 'none';
+            }, 3000);
+        }
+
+        // Tampilkan pesan error
+        function showError(message) {
+            const alert = document.getElementById('errorAlert');
+            alert.textContent = message;
+            alert.style.display = 'block';
+            setTimeout(() => {
+                alert.style.display = 'none';
+            }, 3000);
+        }
+
+        // Logout
+        document.getElementById('logoutBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            if (confirm('Yakin ingin logout?')) {
+                localStorage.removeItem('admin_logged_in');
+                localStorage.removeItem('admin_username');
+                localStorage.removeItem('admin_login_time');
+                window.location.href = 'login.html?logout=success';
+            }
+        });
+
+        // Inisialisasi
+        displayDonasi(donasiData);
+    </script>
+</body>
+</html>

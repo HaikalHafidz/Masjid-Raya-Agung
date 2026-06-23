@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masjid Raya Agung - Pusat Ibadah & Kegiatan Umat</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="images/logo.png" alt="Logo Masjid Raya Agung">
+                <div class="logo-text">
+                    <h1>Masjid Raya Agung</h1>
+                    <p>Pusat Ibadah & Kegiatan Umat</p>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Beranda</a></li>
+                    <li><a href="#tentang">Tentang</a></li>
+                    <li><a href="#jadwal">Jadwal</a></li>
+                    <li><a href="#kegiatan">Kegiatan</a></li>
+                    <li><a href="#donasi">Donasi</a></li>
+                    <li><a href="#kontak">Kontak</a></li>
+                    <!-- Perbaikan: Link login yang benar -->
+                    <li><a href="login.html" class="btn-login">
+                        <i class="fas fa-sign-in-alt"></i> Login Admin
+                    </a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-overlay">
+            <div class="container">
+                <div class="hero-content">
+                    <h2>Selamat Datang di Masjid Raya Agung</h2>
+                    <p>Tempat ibadah, pendidikan, dan pusat kegiatan umat Islam yang nyaman dan berkah</p>
+                    <div class="hero-buttons">
+                        <a href="#donasi" class="btn btn-primary">Donasi Sekarang</a>
+                        <a href="#kegiatan" class="btn btn-secondary">Lihat Kegiatan</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-features">
+            <div class="container">
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <i class="fas fa-mosque"></i>
+                        <h3>Masjid Terbesar</h3>
+                        <p>Kapasitas 2.000 jamaah</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-users"></i>
+                        <h3>Kegiatan Rutin</h3>
+                        <p>Pengajian & TPA setiap hari</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-hand-holding-heart"></i>
+                        <h3>Donasi Mudah</h3>
+                        <p>Via QRIS & Transfer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tentang Section -->
+    <section id="tentang" class="tentang">
+        <div class="container">
+            <div class="section-header">
+                <h2>Tentang Masjid Raya Agung</h2>
+                <p>Sejarah dan visi misi masjid kami</p>
+            </div>
+            <div class="tentang-content">
+                <div class="tentang-text">
+                    <p>Masjid Raya Agung adalah masjid yang berdiri sejak tahun 1985 dan telah menjadi pusat kegiatan keislaman di wilayah ini. Dengan kapasitas hingga 2.000 jamaah, masjid ini melayani berbagai kegiatan ibadah dan pendidikan.</p>
+                    <p>Kami berkomitmen untuk menjadi tempat yang nyaman bagi seluruh umat Islam untuk beribadah, belajar, dan bersilaturahmi.</p>
+                    <div class="visi-misi">
+                        <div class="visi">
+                            <h3><i class="fas fa-eye"></i> Visi</h3>
+                            <p>Menjadi masjid yang rahmatan lil 'alamin dan pusat peradaban Islam</p>
+                        </div>
+                        <div class="misi">
+                            <h3><i class="fas fa-bullseye"></i> Misi</h3>
+                            <p>Menyelenggarakan kegiatan ibadah, pendidikan, dan sosial yang berkualitas</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="tentang-image">
+                    <img src="images/masjid.jpg" alt="Gambar Masjid Raya Agung">
+                    <div class="image-overlay">
+                        <h3>Masjid Raya Agung</h3>
+                        <p>Sejak 1985</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Jadwal Sholat Section -->
+    <section id="jadwal" class="jadwal">
+        <div class="container">
+            <div class="section-header">
+                <h2>Jadwal Sholat</h2>
+                <p>Jadwal sholat untuk wilayah Kota Agung dan sekitarnya</p>
+            </div>
+            <div class="jadwal-container">
+                <div class="jadwal-header">
+                    <h3 id="tanggal-sekarang">Hari Ini</h3>
+                    <p id="lokasi-sekarang">Kota Agung</p>
+                </div>
+                <div id="jadwal-sholat" class="jadwal-list">
+                    <!-- Jadwal akan diisi oleh JavaScript -->
+                    <div class="loading">Memuat jadwal sholat...</div>
+                </div>
+                <div class="jadwal-note">
+                    <p><i class="fas fa-info-circle"></i> Jadwal dapat berubah sesuai dengan kondisi cuaca dan penetapan pemerintah</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kegiatan Section -->
+    <section id="kegiatan" class="kegiatan">
+        <div class="container">
+            <div class="section-header">
+                <h2>Kegiatan Masjid</h2>
+                <p>Berbagai kegiatan rutin dan program unggulan masjid</p>
+            </div>
+            <div class="kegiatan-grid">
+                <div class="kegiatan-item">
+                    <div class="kegiatan-icon">
+                        <i class="fas fa-book-quran"></i>
+                    </div>
+                    <h3>Pengajian Rutin</h3>
+                    <p>Setiap malam Jumat ba'da Maghrib</p>
+                    <span class="kegiatan-tag">Umum</span>
+                </div>
+                <div class="kegiatan-item">
+                    <div class="kegiatan-icon">
+                        <i class="fas fa-child"></i>
+                    </div>
+                    <h3>Taman Pendidikan Al-Quran</h3>
+                    <p>Senin-Jumat, 16.00-18.00 WIB</p>
+                    <span class="kegiatan-tag">Anak-anak</span>
+                </div>
+                <div class="kegiatan-item">
+                    <div class="kegiatan-icon">
+                        <i class="fas fa-female"></i>
+                    </div>
+                    <h3>Kajian Muslimah</h3>
+                    <p>Setiap Sabtu pagi, 09.00-11.00 WIB</p>
+                    <span class="kegiatan-tag">Muslimah</span>
+                </div>
+                <div class="kegiatan-item">
+                    <div class="kegiatan-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Bimbingan Pernikahan</h3>
+                    <p>Setiap bulan pertama, 13.00-15.00 WIB</p>
+                    <span class="kegiatan-tag">Pranikah</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donasi Section -->
+    <section id="donasi" class="donasi">
+        <div class="container">
+            <div class="section-header">
+                <h2>Donasi untuk Masjid</h2>
+                <p>Bantu pengembangan dan operasional Masjid Raya Agung</p>
+            </div>
+            <div class="donasi-content">
+                <div class="donasi-info">
+                    <h3>Mari Berdonasi</h3>
+                    <p>Setiap donasi yang Anda berikan akan digunakan untuk:</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Operasional harian masjid</li>
+                        <li><i class="fas fa-check"></i> Pengembangan fasilitas</li>
+                        <li><i class="fas fa-check"></i> Kegiatan dakwah dan pendidikan</li>
+                        <li><i class="fas fa-check"></i> Bantuan sosial umat</li>
+                    </ul>
+                    <div class="donasi-total">
+                        <h4>Total Donasi Terkumpul</h4>
+                        <p class="total-amount">Rp 125.430.000</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="inline-size: 65%"></div>
+                        </div>
+                        <p class="progress-text">65% dari target Rp 200.000.000</p>
+                    </div>
+                </div>
+                <div class="donasi-methods">
+                    <h3>Cara Donasi</h3>
+                    <div class="method-tabs">
+                        <button class="tab-button active" data-tab="qris">QRIS</button>
+                        <button class="tab-button" data-tab="transfer">Transfer Bank</button>
+                    </div>
+                    
+                    <div class="tab-content active" id="qris-tab">
+                        <div class="qris-container">
+                            <img src="images/qris.png" alt="QRIS Donasi" class="qris-image">
+                            <p>Scan QR code di atas untuk donasi via QRIS</p>
+                            <div class="donasi-form">
+                                <h4>Konfirmasi Donasi QRIS</h4>
+                                <form id="form-donasi-qris">
+                                    <input type="text" name="nama" placeholder="Nama Donatur" required>
+                                    <input type="email" name="email" placeholder="Email" required>
+                                    <input type="number" name="jumlah" placeholder="Jumlah Donasi" required>
+                                    <input type="text" name="bukti" placeholder="No. Transaksi" required>
+                                    <button type="submit">Konfirmasi Donasi</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="transfer-tab">
+                        <div class="bank-list">
+                            <div class="bank-item">
+                                <h4>Bank Syariah Indonesia</h4>
+                                <p>No. Rekening: <strong>1234-5678-9012</strong></p>
+                                <p>a.n. Masjid Raya Agung</p>
+                            </div>
+                            <div class="bank-item">
+                                <h4>Bank Mandiri</h4>
+                                <p>No. Rekening: <strong>9876-5432-1010</strong></p>
+                                <p>a.n. Masjid Raya Agung</p>
+                            </div>
+                        </div>
+                        <div class="donasi-form">
+                            <h4>Konfirmasi Donasi Transfer</h4>
+                            <form id="form-donasi-transfer">
+                                <input type="text" name="nama" placeholder="Nama Donatur" required>
+                                <input type="email" name="email" placeholder="Email" required>
+                                <input type="number" name="jumlah" placeholder="Jumlah Donasi" required>
+                                <select name="bank" required>
+                                    <option value="">Pilih Bank</option>
+                                    <option value="BSI">Bank Syariah Indonesia</option>
+                                    <option value="Mandiri">Bank Mandiri</option>
+                                </select>
+                                <input type="text" name="bukti" placeholder="No. Rekening Pengirim" required>
+                                <button type="submit">Konfirmasi Donasi</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontak Section -->
+    <section id="kontak" class="kontak">
+        <div class="container">
+            <div class="section-header">
+                <h2>Kontak Kami</h2>
+                <p>Hubungi kami untuk informasi lebih lanjut</p>
+            </div>
+            <div class="kontak-content">
+                <div class="kontak-info">
+                    <div class="kontak-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3>Alamat</h3>
+                            <p>Jl. Merdeka No. 123, Kota Agung</p>
+                        </div>
+                    </div>
+                    <div class="kontak-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h3>Telepon</h3>
+                            <p>(021) 1234-5678</p>
+                        </div>
+                    </div>
+                    <div class="kontak-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3>Email</h3>
+                            <p>info@masjidrayaagung.id</p>
+                        </div>
+                    </div>
+                    <div class="kontak-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h3>Jam Operasional</h3>
+                            <p>Setiap hari, 24 jam</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="kontak-form">
+                    <h3>Kirim Pesan</h3>
+                    <form id="form-kontak" action="php/kontak.php" method="POST">
+                        <input type="text" name="nama" placeholder="Nama Anda" required>
+                        <input type="email" name="email" placeholder="Email Anda" required>
+                        <input type="text" name="subjek" placeholder="Subjek" required>
+                        <textarea name="pesan" placeholder="Pesan Anda" rows="5" required></textarea>
+                        <button type="submit">Kirim Pesan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <img src="images/logo.png" alt="Logo Masjid Raya Agung">
+                        <div class="logo-text">
+                            <h3>Masjid Raya Agung</h3>
+                            <p>Pusat Ibadah & Kegiatan Umat</p>
+                        </div>
+                    </div>
+                    <p>Menjadi masjid yang rahmatan lil 'alamin dan pusat peradaban Islam di masyarakat.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Tautan Cepat</h3>
+                    <ul>
+                        <li><a href="#home">Beranda</a></li>
+                        <li><a href="#tentang">Tentang Kami</a></li>
+                        <li><a href="#jadwal">Jadwal Sholat</a></li>
+                        <li><a href="#kegiatan">Kegiatan</a></li>
+                        <li><a href="#donasi">Donasi</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Ikuti Kami</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                    <div class="newsletter">
+                        <h4>Newsletter</h4>
+                        <p>Dapatkan update kegiatan masjid</p>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Email Anda">
+                            <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Masjid Raya Agung. Semua hak dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

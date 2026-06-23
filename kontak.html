@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proses Pesan - Masjid Raya Agung</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a472a 0%, #0d2d1a 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            margin: 0;
+        }
+        
+        .message-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .success-icon {
+            color: #27ae60;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .error-icon {
+            color: #e74c3c;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        
+        p {
+            color: #6c757d;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .btn {
+            background: #1a472a;
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #0d2d1a;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .countdown {
+            margin-top: 1rem;
+            color: #95a5a6;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="message-container" id="messageContainer">
+        <!-- Pesan akan diisi oleh JavaScript -->
+    </div>
+
+    <script>
+        // Ambil data dari URL atau sessionStorage
+        const params = new URLSearchParams(window.location.search);
+        const status = params.get('status') || 'success';
+        
+        const container = document.getElementById('messageContainer');
+        let countdown = 5;
+        
+        if (status === 'success') {
+            container.innerHTML = `
+                <div class="success-icon">✓</div>
+                <h2>Pesan Berhasil Dikirim!</h2>
+                <p>Terima kasih telah menghubungi kami. Pesan Anda akan segera kami proses.</p>
+                <a href="../kontak.html" class="btn">Kembali ke Halaman Kontak</a>
+                <div class="countdown">Dialihkan dalam <span id="countdown">5</span> detik...</div>
+            `;
+        } else {
+            const errorMsg = params.get('message') || 'Terjadi kesalahan saat mengirim pesan.';
+            container.innerHTML = `
+                <div class="error-icon">✗</div>
+                <h2>Pesan Gagal Dikirim!</h2>
+                <p>${errorMsg}</p>
+                <a href="../kontak.html" class="btn">Kembali ke Halaman Kontak</a>
+                <div class="countdown">Dialihkan dalam <span id="countdown">5</span> detik...</div>
+            `;
+        }
+        
+        // Countdown dan redirect
+        const countdownEl = document.getElementById('countdown');
+        const interval = setInterval(() => {
+            countdown--;
+            if (countdownEl) countdownEl.textContent = countdown;
+            if (countdown <= 0) {
+                clearInterval(interval);
+                window.location.href = '../kontak.html';
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
